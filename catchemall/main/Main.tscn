@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://main/Main.gd" type="Script" id=1]
+[ext_resource path="res://gem/Gem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://powerup/Powerup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/audio/Cherry.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/Level.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/Hit.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/Powerup.wav" type="AudioStream" id=9]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+Gem = ExtResource( 2 )
+Powerup = ExtResource( 3 )
+playtime = 30
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 480.0
+margin_bottom = 720.0
+color = Color( 0.411765, 0.247059, 0.333333, 1 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+
+[node name="CherryContainer" type="Node2D" parent="."]
+
+[node name="PlayerStart" type="Position2D" parent="."]
+position = Vector2( 240, 350 )
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="CherrySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="LevelSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="EndSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="PowerupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="PowerupTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="hurt" from="Player" to="." method="_on_Player_hurt"]
+[connection signal="pickup" from="Player" to="." method="_on_Player_pickup"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
+[connection signal="timeout" from="PowerupTimer" to="." method="_on_PowerupTimer_timeout"]
