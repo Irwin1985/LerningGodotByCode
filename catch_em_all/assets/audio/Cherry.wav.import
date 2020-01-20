@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cherry.wav-520a0a627c37dfd4b5e2f3e52ee89dac.sample"
+
+[deps]
+
+source_file="res://assets/audio/Cherry.wav"
+dest_files=[ "res://.import/Cherry.wav-520a0a627c37dfd4b5e2f3e52ee89dac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
