@@ -6,19 +6,8 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
+Gem = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="GemContainer" type="Node2D" parent="."]
-
-[node name="Gem" parent="GemContainer" instance=ExtResource( 3 )]
-position = Vector2( 143.913, 52.9831 )
-
-[node name="Gem2" parent="GemContainer" instance=ExtResource( 3 )]
-position = Vector2( 329.487, 50.9297 )
-
-[node name="Gem3" parent="GemContainer" instance=ExtResource( 3 )]
-position = Vector2( 332.824, 156.678 )
-
-[node name="Gem4" parent="GemContainer" instance=ExtResource( 3 )]
-position = Vector2( 144.427, 164.122 )
