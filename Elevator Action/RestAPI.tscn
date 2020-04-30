@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://RestAPI.gd" type="Script" id=1]
+
+[node name="RestAPI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 4.41663
+margin_top = 27.2358
+margin_right = 76.4166
+margin_bottom = 47.2358
+text = "Consultar"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_left = 5.0
+margin_top = 53.0
+margin_right = 508.0
+margin_bottom = 142.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
