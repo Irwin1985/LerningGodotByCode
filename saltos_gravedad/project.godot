@@ -15,20 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Catch Em All"
-run/main_scene="res://menu/Menu.tscn"
+config/name="Tutorial Saltos Gravedad"
 config/icon="res://icon.png"
-
-[display]
-
-window/size/width=480
-window/size/height=720
-window/handheld/orientation="portrait"
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.411765, 0.247059, 0.333333, 1 )
 environment/default_environment="res://default_env.tres"

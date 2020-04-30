@@ -1,4 +1,8 @@
 extends Area2D
+ 
+# signals
+signal picked
+
 
 var velocity = Vector2.ZERO
 var speed = 350
@@ -43,19 +47,15 @@ func process_animations():
 		$AnimatedSprite.play("idle")
 
 
-
-
 func _on_Player_area_entered(area):
 	if area.is_in_group("gem"):
 		if area.has_method("pickup"):
 			area.pickup()
+			emit_signal("picked")
 
-
-
-
-
-
-
+func game_over():
+	set_process(false)
+	$AnimatedSprite.animation = "hurt"
 
 
 
