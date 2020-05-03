@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/frog.png-add542b1308107df2298bf65db70e308.stex"
+path="res://.import/player_sheet.png-17b10a9dc7138da4a4611d57f8e03d4d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/frog.png"
-dest_files=[ "res://.import/frog.png-add542b1308107df2298bf65db70e308.stex" ]
+source_file="res://player_sheet.png"
+dest_files=[ "res://.import/player_sheet.png-17b10a9dc7138da4a4611d57f8e03d4d.stex" ]
 
 [params]
 
