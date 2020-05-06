@@ -2,6 +2,7 @@ extends Node2D
 
 # signals
 const BASIC_LEVEL = 5
+const BONUS_TIME = 5
 export (PackedScene) var Gem
 
 var level = 0
@@ -16,7 +17,7 @@ func _ready():
 	OS.center_window()
 	timer_settings()
 	$HUD/GameOverLabel.visible = false
-	time_left = 5 # OJO: llevar a 30 al terminar la depuración.
+	time_left = 30 # OJO: llevar a 30 al terminar la depuración.
 	$HUD.update_timer(time_left)
 	screensize = get_viewport().get_visible_rect().size
 	spawn_gems()
@@ -35,7 +36,11 @@ func _onGameOverTimer_timeout():
 func _process(delta):
 	if $GemContainer.get_child_count() == 0:
 		level += 1
-		time_left += 5
+		time_left += BONUS_TIME
+		var Audio = AudioStreamPlayer.new()
+		Audio.stream = load("res://assets/audio/Level.wav")
+		add_child(Audio)
+		Audio.play()
 		spawn_gems()
 
 

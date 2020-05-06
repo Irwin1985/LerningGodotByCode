@@ -48,10 +48,10 @@ func process_animations():
 
 
 func _on_Player_area_entered(area):
-	if area.is_in_group("gem"):
-		if area.has_method("pickup"):
-			area.pickup()
-			emit_signal("picked")
+	if area.is_in_group("gem") and area.has_method("pickup"):
+		$GemAudio.play()
+		emit_signal("picked")
+		area.pickup()
 
 func game_over():
 	set_process(false)
