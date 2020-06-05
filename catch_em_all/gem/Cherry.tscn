@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/cherry/cherry-05.png" type="Texture" id=1]
+[ext_resource path="res://assets/cherry/cherry-03.png" type="Texture" id=2]
+[ext_resource path="res://assets/cherry/cherry-04.png" type="Texture" id=3]
+[ext_resource path="res://assets/cherry/cherry-02.png" type="Texture" id=4]
+[ext_resource path="res://assets/cherry/cherry-01.png" type="Texture" id=5]
+[ext_resource path="res://gem/Cherry.gd" type="Script" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 21.449
+
+[node name="Cherry" type="Area2D" groups=[
+"cherry",
+]]
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2.5, 2.5 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

@@ -4,6 +4,7 @@ extends Node2D
 const BASIC_LEVEL = 5
 const BONUS_TIME = 5
 export (PackedScene) var Gem
+var Cherry = preload("res://gem/Cherry.tscn")
 
 var level = 0
 var screensize = Vector2.ZERO
@@ -13,6 +14,7 @@ onready var GameOverTimer = Timer.new()
 
 
 func _ready():
+	$Froggy.visible = false
 	randomize()
 	OS.center_window()
 	timer_settings()
@@ -21,7 +23,8 @@ func _ready():
 	$HUD.update_timer(time_left)
 	screensize = get_viewport().get_visible_rect().size
 	spawn_gems()
-
+	set_cherry_timer()
+	$Froggy.visible = true
 
 func timer_settings():
 	GameOverTimer.wait_time = 2
@@ -44,7 +47,6 @@ func _process(delta):
 		spawn_gems()
 
 
-
 func spawn_gems():
 	for index in range(BASIC_LEVEL + level):
 		var Gema = Gem.instance()
@@ -52,7 +54,6 @@ func spawn_gems():
 		Vector2(rand_range(0, screensize.x), 
 			rand_range(0, screensize.y))
 		$GemContainer.add_child(Gema)
-		
 
 
 func _on_GameTimer_timeout():
@@ -62,9 +63,14 @@ func _on_GameTimer_timeout():
 		game_over()
 
 
-func _on_Player_picked():
-	score += 1
-	$HUD.update_score(score)
+func _on_Player_picked(type): # type "gem" | "cherry"
+	match type:
+		"gem":
+			score += 1
+			$HUD.update_score(score)
+		"cherry":
+			time_left += 5
+			$HUD.update_timer(time_left)
 
 
 func game_over():
@@ -74,9 +80,22 @@ func game_over():
 	GameOverTimer.start()
 
 
+func set_cherry_timer():
+	var interval = rand_range(5, 10)
+	$CherryTimer.wait_time = interval
+	$CherryTimer.start()
 
 
-
-
-
-
+func _on_CherryTimer_timeout():
+	# 1. apagar el timer ? stop()
+	# 2. crear la escena cherry
+	# 3. agregar la escena cherry al juego. add_child()
+	# 4. reajustar el time_out del timer.
+	$CherryTimer.stop()
+	var cherry = Cherry.instance()
+	cherry.position.x = rand_range(25, 460)
+	cherry.position.y = rand_range(25, 700)
+	$GemContainer.add_child(cherry)
+	set_cherry_timer()
+	
+	

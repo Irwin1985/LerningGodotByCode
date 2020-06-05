@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main/Main.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gem/Gem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Kenney Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://main/HUD.gd" type="Script" id=5]
+[ext_resource path="res://enemy/Froggy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -76,5 +77,11 @@ __meta__ = {
 
 [node name="GameTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="CherryTimer" type="Timer" parent="."]
+
+[node name="Froggy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 137.315, 275.356 )
 [connection signal="picked" from="Player" to="." method="_on_Player_picked"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
+[connection signal="timeout" from="CherryTimer" to="." method="_on_CherryTimer_timeout"]

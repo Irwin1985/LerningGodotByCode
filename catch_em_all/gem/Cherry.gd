@@ -29,3 +29,7 @@ func pickup():
 func _on_Tween_tween_completed(object, key):
 	call_deferred("queue_free")
 	
+
+
+func _on_LifeTimer_timeout():
+	call_deferred("queue_free")
