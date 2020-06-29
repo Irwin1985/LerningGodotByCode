@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/enemy/frog.png" type="Texture" id=1]
 [ext_resource path="res://enemy/Froggy.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-resource_name = "idle"
+resource_name = "breathe"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -19,14 +19,63 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="Animation" id=2]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 14.9683, 14.5628 )
 
-[node name="Froggy" type="Area2D"]
+[node name="Froggy" type="KinematicBody2D" groups=[
+"enemy",
+]]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
+gravity_power = 750
+jump_power = 350
+speed = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2.5, 2.5 )
@@ -34,11 +83,18 @@ texture = ExtResource( 1 )
 hframes = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 1 )
+anims/breathe = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/jump_down = SubResource( 3 )
+anims/jump_up = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.20831, 6.44093 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="JumpTimer" type="Timer" parent="."]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]

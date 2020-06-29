@@ -37,6 +37,7 @@ func _onGameOverTimer_timeout():
 
 
 func _process(delta):
+	update_platform_position()
 	if $GemContainer.get_child_count() == 0:
 		level += 1
 		time_left += BONUS_TIME
@@ -45,6 +46,10 @@ func _process(delta):
 		add_child(Audio)
 		Audio.play()
 		spawn_gems()
+
+
+func update_platform_position():
+	$Platform.position.x = $Froggy.position.x
 
 
 func spawn_gems():
@@ -97,5 +102,7 @@ func _on_CherryTimer_timeout():
 	cherry.position.y = rand_range(25, 700)
 	$GemContainer.add_child(cherry)
 	set_cherry_timer()
-	
-	
+
+
+func _on_Player_hurt():
+	game_over()

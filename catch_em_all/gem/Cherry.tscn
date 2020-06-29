@@ -38,5 +38,6 @@ shape = SubResource( 2 )
 wait_time = 2.0
 one_shot = true
 autostart = true
+[connection signal="area_entered" from="." to="." method="_on_Cherry_area_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main/Main.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,15 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=2]
 size = 38
 font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 58.5524, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 18.0551, 264.676 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 17.339, 265.392 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -82,6 +91,37 @@ autostart = true
 
 [node name="Froggy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 137.315, 275.356 )
+jump_power = -350
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2( 131.307, 328.263 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource( 3 )
+
+[node name="Boudaries" type="Node2D" parent="."]
+
+[node name="Left" type="StaticBody2D" parent="Boudaries"]
+position = Vector2( -21.2041, 366.929 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boudaries/Left"]
+shape = SubResource( 4 )
+
+[node name="Right" type="StaticBody2D" parent="Boudaries"]
+position = Vector2( 500.033, 360.485 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boudaries/Right"]
+shape = SubResource( 5 )
+[connection signal="hurt" from="Player" to="." method="_on_Player_hurt"]
 [connection signal="picked" from="Player" to="." method="_on_Player_picked"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="CherryTimer" to="." method="_on_CherryTimer_timeout"]

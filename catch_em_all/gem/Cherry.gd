@@ -33,3 +33,9 @@ func _on_Tween_tween_completed(object, key):
 
 func _on_LifeTimer_timeout():
 	call_deferred("queue_free")
+
+
+func _on_Cherry_area_entered(area):
+	if area.is_in_group("enemy"):
+		self.position.x = rand_range(25, 470)
+		self.position.y = rand_range(25, 700)

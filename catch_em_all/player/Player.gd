@@ -2,6 +2,7 @@ extends Area2D
  
 # signals
 signal picked
+signal hurt
 
 
 var velocity = Vector2.ZERO
@@ -69,3 +70,8 @@ func game_over():
 
 
 
+
+
+func _on_Player_body_entered(body):
+	if body.is_in_group("enemy"):
+		emit_signal("hurt")
