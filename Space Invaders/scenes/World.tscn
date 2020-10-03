@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/SpaceShip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/World.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Bullet.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.30649, 82.9721 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.30649, 82.9721 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 2 )
+Bullet = ExtResource( 3 )
+
+[node name="SpaceShip" parent="." instance=ExtResource( 1 )]
+position = Vector2( 228.275, 458.217 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="LeftWall" type="Area2D" parent="Walls"]
+position = Vector2( -9.95969, 398.066 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+shape = SubResource( 1 )
+
+[node name="RightWall" type="Area2D" parent="Walls"]
+position = Vector2( 488.989, 398.388 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+shape = SubResource( 2 )
+[connection signal="fired" from="SpaceShip" to="." method="_on_SpaceShip_fired"]
