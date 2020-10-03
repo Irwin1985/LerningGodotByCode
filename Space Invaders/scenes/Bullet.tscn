@@ -20,7 +20,7 @@ region_enabled = true
 region_rect = Rect2( 41, 21, 3, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.0181723, -0.981297 )
+position = Vector2( -1.05674, -0.9592 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

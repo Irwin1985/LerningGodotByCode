@@ -15,7 +15,7 @@ script = ExtResource( 2 )
 Bullet = ExtResource( 3 )
 
 [node name="SpaceShip" parent="." instance=ExtResource( 1 )]
-position = Vector2( 228.275, 458.217 )
+position = Vector2( 231.383, 461.136 )
 
 [node name="Walls" type="Node2D" parent="."]
 

@@ -35,4 +35,4 @@ cast_to = Vector2( 20, 0 )
 collide_with_areas = true
 
 [node name="BulletPosition" type="Position2D" parent="."]
-position = Vector2( 0.869232, -20.2668 )
+position = Vector2( 1.02369, -20.395 )

@@ -2,7 +2,8 @@ extends Area2D
 
 signal fired
 
-export (int) var speed
+
+export (int) var speed = 200
 var velocity: Vector2 = Vector2.ZERO
 var can_fire = true
 
@@ -19,7 +20,7 @@ func _process(delta):
 
 	position.x += velocity.x * delta
 
-	# Fire Section
-	if Input.is_action_pressed("fire") and can_fire:
+	# Fire section
+	if Input.is_action_pressed("fire") and can_fire: # z or space
 		can_fire = false
 		emit_signal("fired", $BulletPosition.global_position)
