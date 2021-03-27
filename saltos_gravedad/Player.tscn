@@ -3,9 +3,8 @@
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://player_sheet.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 11.5957
-height = 7.50681
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.375, 10.5938 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "dead"
@@ -75,13 +74,17 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 387.941, 203.53 )
+position = Vector2( 0, -0.132433 )
+scale = Vector2( 2, 2 )
+collision_layer = 2
+collision_mask = 13
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -5 )
 texture = ExtResource( 2 )
 hframes = 19
 frame = 7

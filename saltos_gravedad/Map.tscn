@@ -18,11 +18,13 @@ font_data = ExtResource( 2 )
 [node name="Map" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 77.8696, 100.523 )
 
 [node name="GroundCollection" type="Node2D" parent="."]
 
 [node name="Ground" type="StaticBody2D" parent="GroundCollection"]
 position = Vector2( 391.499, 322.696 )
+collision_mask = 0
 __meta__ = {
 "_edit_group_": true
 }
@@ -34,7 +36,8 @@ __meta__ = {
 }
 
 [node name="Ground2" type="StaticBody2D" parent="GroundCollection"]
-position = Vector2( 95.9153, 265.738 )
+position = Vector2( 94.9714, 265.738 )
+collision_mask = 0
 __meta__ = {
 "_edit_group_": true
 }
@@ -46,12 +49,55 @@ __meta__ = {
 }
 
 [node name="Ground3" type="StaticBody2D" parent="GroundCollection"]
-position = Vector2( 705.969, 272.034 )
+position = Vector2( 705.025, 272.034 )
+collision_mask = 0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollection/Ground3"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall1" type="StaticBody2D" parent="GroundCollection"]
+position = Vector2( 848.022, 146.499 )
+rotation = -1.59478
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollection/Wall1"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall2" type="StaticBody2D" parent="GroundCollection"]
+position = Vector2( -52.434, 142.723 )
+rotation = -1.59478
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollection/Wall2"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall3" type="StaticBody2D" parent="GroundCollection"]
+position = Vector2( 476.136, 181.894 )
+rotation = -1.59478
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollection/Wall3"]
 shape = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
