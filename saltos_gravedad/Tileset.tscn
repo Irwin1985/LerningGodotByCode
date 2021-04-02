@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://NES - Super Mario Bros - Tileset.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.99574, 8.02154 )
+
+[node name="Tileset" type="Node2D"]
+
+[node name="Block-1" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 86, 63, 16, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Block-1"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block-1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Block-2" type="Sprite" parent="."]
+position = Vector2( 20.2165, -0.0743256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 18, 97, 16, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Block-2"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block-2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Block-3" type="Sprite" parent="."]
+position = Vector2( 39.6491, 0.0659823 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1, 131, 16, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Block-3"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block-3/StaticBody2D"]
+shape = SubResource( 1 )
