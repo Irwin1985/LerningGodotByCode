@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://test_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tileset_item.tres" type="TileSet" id=3]
+[ext_resource path="res://Map2.gd" type="Script" id=4]
+[ext_resource path="res://Hongo.tscn" type="PackedScene" id=5]
 
 [node name="Map2" type="Node2D"]
+script = ExtResource( 4 )
+Hongo = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -15,3 +20,12 @@ tile_data = PoolIntArray( 393247, 2, 0, 458781, 2, 0, 458792, 2, 0, 589844, 2, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 127.5, 212.368 )
+
+[node name="Items" type="TileMap" parent="."]
+scale = Vector2( 1.5, 1.5 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262175, 0, 0, 458773, 0, 0, 524300, 0, 0 )
