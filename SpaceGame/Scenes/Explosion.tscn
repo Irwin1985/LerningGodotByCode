@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/explosion.png" type="Texture" id=1]
+
+[node name="Explosion" type="Area2D" groups=[
+"explosion",
+]]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

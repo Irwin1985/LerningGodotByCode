@@ -12,3 +12,7 @@ func spawn_items():
 		EscenaHongo.position = $Items.map_to_world(cell) * 1.5 + $Items.cell_size / 2
 		add_child(EscenaHongo)
 
+
+
+func _on_Timer_timeout():
+	pass # Replace with function body.
