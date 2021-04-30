@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://sprites/background.png" type="Texture" id=1]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/hour5.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/stage.gd" type="Script" id=4]
+[ext_resource path="res://scenes/asteroid.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/background.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[node name="stage" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="score" type="Label" parent="ui"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.435294, 1, 0.733333, 1 )
+custom_colors/font_color_shadow = Color( 0.184314, 0.121569, 0.278431, 1 )
+text = "score: 0"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lives" type="Label" parent="ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.435294, 1, 0.733333, 1 )
+custom_colors/font_color_shadow = Color( 0.184314, 0.121569, 0.278431, 1 )
+text = "lives: 6"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="retry" type="Label" parent="ui"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -12.5
+margin_right = 72.0
+margin_bottom = 12.5
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.435294, 1, 0.733333, 1 )
+custom_colors/font_color_shadow = Color( 0.184314, 0.121569, 0.278431, 1 )
+text = "game over
+-press the enter key to retry-"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 46.4647, 88.3285 )
+
+[node name="asteroid" parent="." instance=ExtResource( 5 )]
+position = Vector2( 473.959, 92.4309 )
