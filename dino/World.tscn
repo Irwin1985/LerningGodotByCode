@@ -1,25 +1,43 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Dino.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ground.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1129.82, 5 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Dino" parent="." instance=ExtResource( 1 )]
-position = Vector2( 100, 460 )
+position = Vector2( 145.765, 512.498 )
 gravity = 5500
 jump = 1500
 
-[node name="GroundPosition" type="Position2D" parent="."]
-position = Vector2( 0, 487 )
-
-[node name="DinoPosition" type="Position2D" parent="."]
-position = Vector2( 100, 460 )
-
-[node name="GroundContainer" type="Node2D" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
-autostart = true
+
+[node name="Ground" type="Sprite" parent="."]
+position = Vector2( 0, 548.659 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2( 1130, 8 )
+shape = SubResource( 1 )
+
+[node name="CactusContainer" type="Node2D" parent="Ground"]
+position = Vector2( 0, -182.886 )
+scale = Vector2( 0.333333, 0.333333 )
+
+[node name="CactusSpawner" type="Timer" parent="."]
+[connection signal="jump" from="Dino" to="." method="_on_Dino_jump"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="CactusSpawner" to="." method="_on_CactusSpawner_timeout"]

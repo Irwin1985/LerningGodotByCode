@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Level.gd" type="Script" id=1]
+[ext_resource path="res://Serene_Village_32x32.png" type="Texture" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Item.tscn" type="PackedScene" id=4]
+
+[node name="Level" type="Node2D"]
+position = Vector2( 0, 1.18921 )
+script = ExtResource( 1 )
+
+[node name="Grass" type="Sprite" parent="."]
+position = Vector2( 505.228, 292.406 )
+scale = Vector2( 6.41967, 5.93716 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 5.7759, 235.564, 180.688, 117.332 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 143.469, 96.2752 )
+
+[node name="Item" parent="." instance=ExtResource( 4 )]
+position = Vector2( 478.846, 87.1815 )
+rotation = -1.93754
+object_id = "object_2_backyard"
+
+[node name="Item2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 858.798, 66.965 )
+rotation = -1.93754
+object_id = "object_1_backyard"
+
+[node name="Sprite" parent="Item2" index="0"]
+region_rect = Rect2( 128.907, 33.6003, 30.5943, 28.3216 )
+
+[node name="Item3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 177.977, 401.132 )
+rotation = -1.93754
+object_id = "object_3_backyard"
+
+[node name="Sprite" parent="Item3" index="0"]
+region_rect = Rect2( 102.333, 98.8099, 20.979, 29.0209 )
+[connection signal="player_spacebar" from="Player" to="." method="_on_Player_player_spacebar"]
+
+[editable path="Item2"]
+
+[editable path="Item3"]

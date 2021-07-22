@@ -9,6 +9,7 @@ extents = Vector2( 26.3075, 42.1139 )
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
 length = 0.1
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -64,7 +65,6 @@ __meta__ = {
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 4
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

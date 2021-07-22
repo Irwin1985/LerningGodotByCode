@@ -1,38 +1,29 @@
 extends Node2D
 
-var Ground = preload("res://Ground.tscn")
-var ground_position = 0
+var CactusScene = preload("res://CactusTileSet.tscn")
+
 
 func _ready():
-	spawn_ground(2)
-
-
-func spawn_ground(how_many):
-	for i in how_many:
-		var ground = Ground.instance()
-		var color: Color = Color(255, 0, 0, 1)
-		if i == 1:
-			color = Color(0, 0, 255, 1)
-		ground.position = $GroundPosition.position
-		if ground_position == 0:
-			ground.position.x = $GroundPosition.position.x
-		else:
-			ground.position.x = ground_position
-		ground_position += 1024
-		
-		print(ground_position)
-		ground.get_node("Sprite").modulate = color
-		ground.connect("ground_exited", self, "on_ground_exited", [], CONNECT_DEFERRED)
-		$GroundContainer.add_child(ground)
-
-
-
-func on_ground_exited(ground: StaticBody2D):
-	ground.call_deferred("queue_free")
-	ground_position -= 1024
-	spawn_ground(1)
+	randomize()
 
 
 func _on_Timer_timeout():
-	for ground in $GroundContainer.get_children():
-		ground.position.x -= 10
+	$Ground.position.x -= 10
+	if $Ground.position.x <= -1024:
+		$Ground.position.x += 1024
+	
+
+
+func _on_Dino_jump():
+	$Timer.start()
+	$CactusSpawner.wait_time = 1 + randi() % 2
+	$CactusSpawner.start()
+
+
+func _on_CactusSpawner_timeout():
+	$CactusSpawner.stop()
+	var cactus_instance = CactusScene.instance()
+	cactus_instance.position = Vector2(1024, 454)
+	
+	$Ground/CactusContainer.add_child(cactus_instance)
+	$CactusSpawner.wait_time = 1 + randi() % 2

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (int) var gravity
 export (int) var jump
+signal jump
 
 enum {IDLE, RUN, JUMP, DEAD}
 var state
@@ -33,6 +34,7 @@ func get_input():
 	var key_jump = Input.is_action_pressed("ui_up")
 	if is_on_floor() and key_jump:
 		game_begin = true
+		emit_signal("jump")
 		velocity.y = -jump
 		transition_to(JUMP)
 
