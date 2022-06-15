@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://manilla.png" type="Texture" id=1]
+[ext_resource path="res://ruleta.png" type="Texture" id=2]
+[ext_resource path="res://RuletaScene.gd" type="Script" id=3]
+
+[node name="RuletaScene" type="Node2D"]
+script = ExtResource( 3 )
+_roullete_rounds = 10
+_roullete_speed = 200
+_rate = 40.0
+
+[node name="SpriteRuleta" type="Sprite" parent="."]
+position = Vector2( 489, 300 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 640, 48, 736, 144, 520, 272, 520, 264 )
+disabled = true
+
+[node name="Area2D2" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D2"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 784, 288, 752, 168, 528, 288, 536, 288 )
+disabled = true
+
+[node name="Area2D3" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D3"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 784, 304, 752, 440, 528, 312, 536, 304 )
+disabled = true
+
+[node name="Area2D4" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D4"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 736, 456, 648, 544, 512, 328, 520, 328 )
+disabled = true
+
+[node name="Area2D5" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D5"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 624, 560, 496, 592, 496, 344, 504, 344 )
+disabled = true
+
+[node name="Area2D6" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D6"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 480, 592, 352, 560, 472, 344, 480, 344 )
+disabled = true
+
+[node name="Area2D7" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D7"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 336, 544, 248, 448, 456, 328, 456, 336 )
+disabled = true
+
+[node name="Area2D8" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D8"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 232, 440, 200, 312, 448, 304, 448, 312 )
+disabled = true
+
+[node name="Area2D9" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D9"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 192, 288, 232, 160, 456, 288 )
+disabled = true
+
+[node name="Area2D10" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D10"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 240, 144, 336, 48, 464, 264, 456, 272 )
+disabled = true
+
+[node name="Area2D11" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D11"]
+position = Vector2( -489, -300 )
+polygon = PoolVector2Array( 352, 40, 480, 8, 480, 256, 472, 256 )
+disabled = true
+
+[node name="Area2D12" type="Area2D" parent="SpriteRuleta"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpriteRuleta/Area2D12"]
+polygon = PoolVector2Array( 7, -300, 143, -260, 15, -36, 7, -36 )
+disabled = true
+
+[node name="AreaManecilla" type="Area2D" parent="."]
+position = Vector2( 488, -19 )
+
+[node name="SpriteManecilla" type="Sprite" parent="AreaManecilla"]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 80 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaManecilla"]
+polygon = PoolVector2Array( 0, -5, 8, -5, 8, 171, 0, 171 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Button" type="Button" parent="."]
+margin_right = 152.0
+margin_bottom = 56.0
+text = "Pulsar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_entered" from="AreaManecilla" to="." method="_on_AreaManecilla_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
